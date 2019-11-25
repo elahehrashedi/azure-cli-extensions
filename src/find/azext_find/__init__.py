@@ -26,7 +26,7 @@ class FindCommandsLoader(AzCommandsLoader):
         from azure.cli.core.commands import CliCommandType
 
         process_query_custom = CliCommandType(
-            operations_tmpl='azext_find.custom#{}')
+            operations_tmpl='azext_ask.custom#{}')
         super(FindCommandsLoader, self).__init__(
             cli_ctx=cli_ctx, custom_command_type=process_query_custom)
 
