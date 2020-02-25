@@ -16,6 +16,7 @@ class RecomCommandsLoader(AzCommandsLoader):
         recom_custom = CliCommandType(
             operations_tmpl='azext_recom.custom#{}',
             client_factory=cf_recom)
+        self.inject_recoms_into_core()
         super(RecomCommandsLoader, self).__init__(cli_ctx=cli_ctx,
                                                   custom_command_type=recom_custom)
 
@@ -28,5 +29,10 @@ class RecomCommandsLoader(AzCommandsLoader):
         from azext_recom._params import load_arguments
         load_arguments(self, command)
 
+    def inject_recoms_into_core(self):
+        # Upload recommendations into the core
+        from azure.cli.core.parser import AzCliCommandParser
+        from azext_recom.custom import provide_recommendations
+        AzCliCommandParser.recommendation_provider = provide_recommendations
 
 COMMAND_LOADER_CLS = RecomCommandsLoader

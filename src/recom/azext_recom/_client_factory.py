@@ -10,4 +10,3 @@ def cf_recom(cli_ctx, *_):
     # from .vendored_sdks.resourcegraph import ResourceGraphClient
     # return get_mgmt_service_client(cli_ctx, ResourceGraphClient, subscription_bound=False)
     return None
-
